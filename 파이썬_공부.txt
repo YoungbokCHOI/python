@@ -1,0 +1,2200 @@
+with open('파일명', 'w', endcoing='utf-8') as f :
+class 상속
+    class SuperBlackBox(BlackBox)  <-- 이미 정의된 Blackbox Class 상속받음
+
+try:
+except:
+else:
+finaly:
+
+except Exception as err:  
+    print('Error : ', err)
+
+import 모듈명    <-- 모듈 전체
+from 모듈명 import 메소드명   <--- 모듈의 특정메스트
+
+
+----------------------------------------
+import oracledb
+
+# 데이터베이스 연결 정보를 설정합니다.
+dsn = oracledb.makedsn("호스트", 포트, service_name="서비스명")
+conn = oracledb.connect(user="사용자명", password="비밀번호", dsn=dsn)
+
+# 커서를 생성합니다.
+cursor = conn.cursor()
+
+# EMP 테이블에서 데이터를 선택하는 쿼리를 실행합니다.
+cursor.execute("SELECT * FROM emp")
+
+# 결과를 출력합니다.
+for row in cursor:
+    print(row)
+
+# 연결을 종료합니다.
+cursor.close()
+conn.close()
+
+
+-----------------------------
+import cx_Oracle
+
+# 연결에 필요한 정보를 설정합니다.
+dsn_tns = cx_Oracle.makedsn('호스트명', 포트번호, service_name='서비스명')
+conn = cx_Oracle.connect(user='사용자명', password='비밀번호', dsn=dsn_tns)
+
+# 커서를 생성합니다.
+cursor = conn.cursor()
+
+# EMP 테이블에서 데이터를 조회하는 쿼리를 실행합니다.
+cursor.execute("SELECT * FROM emp")
+
+# 결과를 출력합니다.
+for row in cursor:
+    print(row)
+
+# 연결을 종료합니다.
+cursor.close()
+conn.close()
+
+---------------------------
+
+
+import numpy as np
+
+# 임의의 데이터로 NumPy 배열 생성
+data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+# 기본 통계 연산
+mean = np.mean(data)
+median = np.median(data)
+variance = np.var(data)
+standard_deviation = np.std(data)
+
+# 결과 출력
+print(f"평균: {mean}")
+print(f"중앙값: {median}")
+print(f"분산: {variance}")
+print(f"표준편차: {standard_deviation}")
+
+
+a6 = np.array([[10,20,30], [40,50,60], [70,80,90]])
+a6[:,0]
+array([10, 40, 70])
+a6[a6[:,0] == 10]
+array([[10, 20, 30]])
+
+np.savetxt('filename',list, delimeter=',', fmt="%3.f")
+  list <== 저장하고자 하는 list
+np.loadtxt('filename, delimeter=',', dtype=np.int64)
+
+-----------------
+import pandas as pd
+
+and => &  a & b 
+or  => |  a | b 
+
+ (s > 25000) & (s <= 250000)
+ s[(s > 25000) & (s <= 250000)]
+  s[(s > 25000) | (s <= 250000)]
+
+  s[1:3] 는 s["서울":"대구"]같은내용이다.
+
+  pd3.sort_index()  : index로 sort
+  pd3.sort_values() : 값으로 sort
+  pd3.sort_values(ascending=False)
+  pd3.sort_vlaues(by="2010")
+  pd3.sort_vlaues(by="[지역", "2010"])
+  pd3.fillna(value=)  N/A 값 null을 0으로 채워라
+  pd3.count()   행의 갯수
+  pd3.values_count()  값이 각각 나온 횟수
+  
+s2 = pd.Series(np.random.randint(6, size=100))
+s2.value_counts()
+pd = read_csv(filename, inde_col="",encoding=
+"euc-kr")
+과목
+1반 2반 3반 4반 
+수학 45 44 73 39
+영어 76 92 45 69
+국어 47 92 45 69
+사회 92 81 85 40
+과학 11 79 47 26
+score['합계'] = score.sum(axis=1)   <== 합게 칼럼 추가
+과목
+1반 2반 3반 4반 합계
+수학 45 44 73 39 201
+영어 76 92 45 69 282
+국어 47 92 45 69 253
+사회 92 81 85 40 298
+과학 11 79 47 26 163
+score['평균'] = score.loc[:. '4반'].mean(axis=1)
+ <= 평균칼럼 추가 : 전체행이고, 4반칼럼까지 축을1로 해서 평균
+과목
+1반 2반 3반 4반 합계 평균
+수학 45 44 73 39 201 50.25
+영어 76 92 45 69 282 70.50
+국어 47 92 45 69 253 63.25
+사회 92 81 85 40 298 74.50
+과학 11 79 47 26 163 40.75
+
+score.loc['반평균'] = score. loc[:, :'4반'].mean()  
+ == ROW 추가 : 반평균 줄 추가
+
+score.fil Ina(value=0, inplace=True) : N/A null을 값을 0으로 채움
+score.loc[:'과학', :'4반'].max(axis = 1)  0부터 행으로 과학까지, 4반까지 열로
+--------
+
+카테고리
+1~15
+나이
+16~25
+26~35
+36~60
+61~99
+구분
+미성년자
+청년
+중년
+장년
+노년
+ages = [0, 2, 10, 21, 23, 37, 31, 61, 20, 41, 32, 100]
+> bins = [0, 15, 25, 35, 60, 991
+>Ib=["미성년자", "청년", "중년", "장년", "노년]
+
+
+cats = pd.cut (ages, bins, labels = Ib)
+
+ages_df pd.DataFrame(ages, columns = ['ages'])
+ = age의 라벨을 ages로 변경
+
+ 
+df1 = pd. Series([275, 260, 250], index=["유재석","신동엽","강호동"]) 
+df1.name ="발사이즈'
+df1
+
+
+df2 = pd. Series([250,245], index=["송은이","김숙"]}
+df2.name ="발사이즈'
+df2
+2개의 df1, df2를 병합 : 시리즈가 같은경우
+df3= pd.concat([df1, df2])
+
+df4 = pd. Series([1.0, 1.2, 1.5], index=["유재석","신동엽","강호동"]) 
+df4.name ="시력'
+
+df5=pd.concat([df3, df4])
+  = 발사이즈와 시력이 모든 사람에게 표시, 시력이 없는 사람은 N/a로 표시
+
+df5.drop("유재석")  : 유재석 데이타 삭제
+ --> 실제로 삭제 안됨
+df3 = df5.drop("유재석")           : 삭제완료
+df5.drop("유재석", inplace=True)   : 삭제완료
+
+
+crimeDf = pd.concat([s1, s2015_2016, s2, s2016_2017, s3], axis=1)
+
+-------------------------
+SQL 사용방법
+sqlite
+설치 : 간단한 형태의 DB, window기준 32bit, 64bit
+
+
+import sqlite3 as sql
+import csv    # csv 파일
+
+def connect_db(db_name):
+    conn = sql.connect(db_name)
+    c = conn.cursor()
+    return conn, c
+
+def close_db(conn):
+    conn.close()
+
+def execute_sql(conn, c, sql, params=()):
+    c.execute(sql, params)
+    conn.commit()
+
+def select_sql(conn, c, sql, params=()):
+    c.execute(sql, params)
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
+
+def select_emp(conn, c, sql):
+    c.execute(sql)
+    rows = c.fetchall()
+    return rows
+
+def save_to_csv(data, filename):
+    with open(filename, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(data)
+
+########################################################################
+# start
+# 데이터베이스 연결
+conn, c = connect_db('..\\DB\\YBDB.db')
+
+
+# 함수 사용 예시
+#execute_sql(conn, c, "INSERT INTO emp VALUES (?, ?, ?)", (1, 'John Doe', 'Engineer'))
+#select_sql(conn, c, "SELECT * FROM emp")
+execute_sql(conn, c, "update emp set emp_name = ? WHERE emp_no = ?", ('홍길동 Doe', 2))
+#execute_sql(conn, c, "DELETE FROM emp WHERE id = ?", (1,))
+
+select_sql(conn, c, "SELECT * FROM emp")
+
+# emp 테이블에서 데이터 선택
+data = select_emp(conn, c, "SELECT * FROM emp")
+
+# 데이터를 CSV 파일로 저장
+save_to_csv(data, 'emp_data.csv')
+
+# 연결 종료
+close_db(conn)
+
+---------------------------------------------------------
+
+import sqlite3
+import csv
+
+def connect_db():
+    conn = sqlite3.connect('YBDB.db')
+    c = conn.cursor()
+    return conn, c
+
+def close_db(conn):
+    conn.close()
+
+def create_table(conn, c):
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS emp2(
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            job TEXT
+        )
+    ''')
+    conn.commit()
+
+def insert_emp2(conn, c, id, name, job):
+    c.execute("INSERT INTO emp2 VALUES (?, ?, ?)", (id, name, job))
+    conn.commit()
+
+def read_csv_and_insert_to_db(filename):
+    # 데이터베이스 연결
+    conn, c = connect_db()
+
+    # emp2 테이블 생성
+    create_table(conn, c)
+
+    # CSV 파일 읽기
+    with open(filename, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            id, name, job = row
+            # emp2 테이블에 데이터 삽입
+            insert_emp2(conn, c, id, name, job)
+
+    # 연결 종료
+    close_db(conn)
+
+# 함수 사용 예시
+read_csv_and_insert_to_db('emp_data.csv')
+------------------------------------------------------
+
+위의 코딩을 오라클로 변경
+import cx_Oracle
+import csv
+
+def connect_db():
+    dsn_tns = cx_Oracle.makedsn('<HOST>', '<PORT>', service_name='<SERVICE_NAME>') # HOST, PORT, SERVICE_NAME을 자신의 환경에 맞게 변경해주세요.
+    conn = cx_Oracle.connect(user='<USERNAME>', password='<PASSWORD>', dsn=dsn_tns) # USERNAME, PASSWORD를 자신의 환경에 맞게 변경해주세요.
+    c = conn.cursor()
+    return conn, c
+
+def close_db(conn):
+    conn.close()
+
+def create_table(conn, c):
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS emp2(
+            id NUMBER PRIMARY KEY,
+            name VARCHAR2(50),
+            job VARCHAR2(50)
+        )
+    ''')
+    conn.commit()
+
+def insert_emp2(conn, c, id, name, job):
+    c.execute("INSERT INTO emp2 VALUES (:1, :2, :3)", (id, name, job))
+    conn.commit()
+
+import cx_Oracle
+import csv
+
+def connect_db():
+    dsn_tns = cx_Oracle.makedsn('<HOST>', '<PORT>', service_name='<SERVICE_NAME>') # HOST, PORT, SERVICE_NAME을 자신의 환경에 맞게 변경해주세요.
+    conn = cx_Oracle.connect(user='<USERNAME>', password='<PASSWORD>', dsn=dsn_tns) # USERNAME, PASSWORD를 자신의 환경에 맞게 변경해주세요.
+    c = conn.cursor()
+    return conn, c
+
+def close_db(conn):
+    conn.close()
+
+def create_table(conn, c):
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS emp2(
+            id NUMBER PRIMARY KEY,
+            name VARCHAR2(50),
+            job VARCHAR2(50)
+        )
+    ''')
+    conn.commit()
+
+def insert_emp2(conn, c, id, name, job):
+    c.execute("INSERT INTO emp2 VALUES (:1, :2, :3)", (id, name, job))
+    conn.commit()
+
+# 중요. 튜플 형태라 파라미터에 id뒤에 , 가 있다.
+def delete_emp2(conn, c, id):
+    c.execute("DELETE FROM emp2 WHERE id = :1", (id,))
+    conn.commit()
+
+def read_csv_and_insert_to_db(filename):
+    # 데이터베이스 연결
+    conn, c = connect_db()
+
+    # emp2 테이블 생성
+    create_table(conn, c)
+
+    # CSV 파일 읽기
+    with open(filename, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            id, name, job = row
+            # emp2 테이블에 데이터 삽입
+            insert_emp2(conn, c, id, name, job)
+
+    # 연결 종료
+    close_db(conn)
+
+# 함수 사용 예시
+read_csv_and_insert_to_db('emp_data.csv')
+def read_csv_and_insert_to_db(filename):
+    # 데이터베이스 연결
+    conn, c = connect_db()
+
+    # emp2 테이블 생성
+    create_table(conn, c)
+
+    # CSV 파일 읽기
+    with open(filename, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            id, name, job = row
+            # emp2 테이블에 데이터 삽입
+            insert_emp2(conn, c, id, name, job)
+
+    # 연결 종료
+    close_db(conn)
+
+# 함수 사용 예시
+read_csv_and_insert_to_db('emp_data.csv')
+
+
+--------------------------
+emp 테이블의 job별 salary 합계와 평균을 구하는 코드를 작성할 수 있습니다. 아래는 그 예시입니다:
+
+Python
+
+import sqlite3
+
+def connect_db():
+    conn = sqlite3.connect('YBDB.db')
+    c = conn.cursor()
+    return conn, c
+
+def close_db(conn):
+    conn.close()
+
+def calculate_sum_and_avg(conn, c):
+    # job별 salary 합계 구하기
+    c.execute("SELECT job, SUM(salary) FROM emp GROUP BY job")
+    sum_rows = c.fetchall()
+    print("Job별 Salary 합계:")
+    for row in sum_rows:
+        print(f"Job: {row[0]}, Sum: {row[1]}")
+
+    # job별 salary 평균 구하기
+    c.execute("SELECT job, AVG(salary) FROM emp GROUP BY job")
+    avg_rows = c.fetchall()
+    print("Job별 Salary 평균:")
+    for row in avg_rows:
+        print(f"Job: {row[0]}, Average: {row[1]}")
+
+# 데이터베이스 연결
+conn, c = connect_db()
+
+# job별 salary 합계와 평균 계산
+calculate_sum_and_avg(conn, c)
+
+# 연결 종료
+close_db(conn)
+
+----------------------------------
+xml file 생성
+import sqlite3
+import xml.etree.ElementTree as ET
+
+# Connect to the SQLite database
+conn = sqlite3.connect('..\\YBDB.db')
+c = conn.cursor()
+
+# Execute the SQL query to fetch the data from the EMP table
+c.execute("SELECT emp_no, emp_name, job FROM EMP")
+rows = c.fetchall()
+
+# Create the root element for the XML
+root = ET.Element("employees")
+
+# Iterate over each row and add it to the XML
+for row in rows:
+    # Create an employee element
+    employee = ET.SubElement(root, "employee")
+    
+    # Add emp_no, emp_name, and job as child elements of the employee element
+    ET.SubElement(employee, "emp_no").text = str(row[0])
+    ET.SubElement(employee, "emp_name").text = row[1]
+    ET.SubElement(employee, "job").text = row[2]
+
+# Create an ElementTree object and write the XML data to a file
+tree = ET.ElementTree(root)
+tree.write("emp_20240408.xml")
+
+#no =Element('no')
+#no.text = 17
+#employee.insert(1, no)
+#employee.remover
+------------------------------------------------
+#xml file 읽어서 insert
+
+import sqlite3
+import xml.etree.ElementTree as ET
+
+# Parse the XML file
+tree = ET.parse('emp_2040408.xml')
+root = tree.getroot()
+print(root.tag) # root 명 출력
+
+# Connect to the SQLite database
+conn = sqlite3.connect('..\\\\YBDB.db')
+c = conn.cursor()
+
+# Iterate over each employee in the XML
+for employee in root.findall('employee'):
+    # Extract the emp_no, emp_name, and job from the XML
+    emp_no = employee.find('emp_no').text
+    emp_name = employee.find('emp_name').text
+    job = employee.find('job').text
+    print(employee.tag, employee.text)
+
+    # Check if the employee already exists in the database
+    c.execute("SELECT * FROM EMP WHERE emp_no = ?", (emp_no,))
+    row = c.fetchone()
+
+    if row is None:
+        # If the employee does not exist, insert a new row
+        c.execute("INSERT INTO EMP (emp_no, emp_name, job) VALUES (?, ?, ?)", (emp_no, emp_name, job))
+    else:
+        # If the employee exists, update the existing row
+        c.execute("UPDATE EMP SET emp_name = ?, job = ? WHERE emp_no = ?", (emp_name, job, emp_no))
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
+
+------------------------------------
+#엑셀 읽기, 쓰기, 수정
+#libray 설정
+#openpyxl  libray
+openpyxl 공식문서 사이트
+https://openpyxl.readthedocs.io/en/stable/
+
+
+#엑셀 파일읽기
+import sqlite3
+import openpyxl
+
+# Load workbook
+wb = openpyxl.load_workbook(r'c:\test\test.xlsx')  # \\ 사용하지 않음
+
+# Select Sheet1
+sheet = wb['Sheet1']
+
+# Connect to the SQLite database
+conn = sqlite3.connect('YBDB.db')
+c = conn.cursor()
+
+# Create emp table if not exists
+c.execute('''
+    CREATE TABLE IF NOT EXISTS emp (
+        emp_no INTEGER PRIMARY KEY,
+        emp_name TEXT,
+        emp_age INTEGER
+    )
+''')
+
+# Iterate over the rows in the sheet
+for row in sheet.iter_rows(min_row=2, values_only=True):
+    emp_no, emp_name, emp_age = row
+
+    # Check if the emp_no already exists in the database
+    c.execute('SELECT * FROM emp WHERE emp_no = ?', (emp_no,))
+    result = c.fetchone()
+
+    if result:
+        # If emp_no exists, update the record
+        c.execute('''
+            UPDATE emp
+            SET emp_name = ?, emp_age = ?
+            WHERE emp_no = ?
+        ''', (emp_name, emp_age, emp_no))
+    else:
+        # If emp_no does not exist, insert a new record
+        c.execute('''
+            INSERT INTO emp (emp_no, emp_name, emp_age)
+            VALUES (?, ?, ?)
+        ''', (emp_no, emp_name, emp_age))
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
+------------------------
+#엑셀 파일 만들기
+
+import sqlite3
+import openpyxl
+
+# Connect to the SQLite database
+conn = sqlite3.connect('YBDB.db')
+c = conn.cursor()
+
+# Query all records from emp table
+c.execute('SELECT * FROM emp')
+rows = c.fetchall()
+
+# Create a new workbook and select the active sheet
+# 엑셀파일 만들기
+wb = openpyxl.Workbook()
+
+#워크시트 생성성
+ws = wb.create_sheet('sheet1')
+sheet = wb.active
+
+# Write the headers to the sheet
+sheet.append(['emp_no', 'emp_name', 'emp_age'])
+
+# Write the data to the sheet
+for row in rows:
+    sheet.append(row)
+
+# Save the workbook as test.xlsx
+wb.save('test.xlsx')
+#wb.save(r'c:\python\test.xlsx')   # r을 사용하면 \\을 사용하지 않아도 된다.
+
+# Close the connection
+conn.close()
+
+#각각 특정쉘에
+ws['A1'] = '참가번호'
+ws['b1'] = '참가자명'
+ws['c1'] = '참가자나이'
+
+ws['A1'] = '1'
+ws['b1'] = '홍길동'
+ws['c1'] = '20'
+
+
+-----------------------------------------
+
+파이썬으로 comma로 구분된 order_no, product_no, cust_no, buy_cnt, buy_amt 칼럼의 txt 
+파일에서 1번재는 칼럼 header, 2번쨰 열부터 있다고 할때 cust_no별로 buy_amt을 합계를 
+구하는 코딩을 해줘
+
+import csv
+from collections import defaultdict
+
+# Define a function to calculate the sum of buy_amt for each cust_no
+def calculate_sum(filename):
+    # Initialize a defaultdict to store the sum of buy_amt for each cust_no
+    sums = defaultdict(int)
+
+    # Open the file
+    with open(filename, 'r') as f:
+        # Create a csv reader
+        reader = csv.reader(f)
+        # Skip the header
+        next(reader)
+        # Iterate over each row
+        for row in reader:
+            # Get the cust_no and buy_amt
+            cust_no = row[2]
+            buy_amt = int(row[4])
+            # Add the buy_amt to the sum for this cust_no
+            sums[cust_no] += buy_amt
+
+    # Return the sums
+    return sums
+
+# Call the function with the filename and print the results
+filename = "your_file.txt"
+sums = calculate_sum(filename)
+for cust_no, sum in sums.items():
+    print(f"The sum of buy_amt for cust_no {cust_no} is {sum}.")
+------------------------
+
+=========================================================================
+웹 크롤링을 하는 방법
+HTML
+
+request : http를 사용하기 위한 도구
+pip install requests
+
+
+pip list
+python -m venv myenv  env환경 생성
+  아니오 버튼 클릭
+.\myenv\Scripts\activate 실행해서  env환경 실생
+ => 에레 발생시 아래는  powere shell 관리자 환경으로 실생
+    PS C:WWINDOWSWsystem32> Set-ExecutionPolicy RemoteSigned
+     Y 입력
+
+
+deactivate : venv close하기
+rmdir myenv : 환경 폴더 삭제
+
+pip list > rq.txt :  설치된 환경 저장
+
+pip install -r rq.txt  <== 저장된환경 불러오기
+cmd : where python  <== 어떤 가상환경을 사용하는지 확인
+
+
+
+# Define the number of sides
+n = 13
+
+# Calculate the sum of interior angles
+interior_sum = (n-2) * 180
+
+# The sum of exterior angles of any polygon is always 360
+exterior_sum = 360
+
+# Print the results
+print(f"The sum of the interior angles of a {n}-gon is {interior_sum} degrees.")
+print(f"The sum of the exterior angles of a {n}-gon is {exterior_sum} degrees.")
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+이 코드를 실행하면 다음과 같은 결과를 얻을 수 있습니다:
+
+13각형의 내각의 합은 1980도입니다.
+13각형의 외각의 합은 항상 360도입니다.
+
+
+===============================================================
+파이썬으로 UNIX SHELL을 구동하는 코드를 작성하였습니다. 아래 코드는 파이썬의 subprocess 모듈을 사용하여 쉘 명령어를 실행하는 함수를 정의하고, ls -l 명령어를 실행하는 예제입니다.
+
+Python
+
+import subprocess
+
+# Define a function to run a shell command
+def run_shell_command(command):
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    output, error = process.communicate()
+
+    if error:
+        print(f"Error: {error}")
+    else:
+        print(output.decode())
+
+# Run a shell command
+run_shell_command("ls -l")
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+위의 코드를 실행하면, ls -l 명령어의 결과가 출력됩니다. 이 함수는 다른 쉘 명령어를 실행하는 데도 사용할 수 있습니다.
+
+=========================================================
+c:\aaa.bat 파일을 실행하고 파라미터 3개를 전달하는 코드를 작성하였습니다. 아래 코드는 파이썬의 subprocess 모듈을 사용하여 bat 파일을 실행하는 함수를 정의하고, param1, param2, param3 파라미터를 전달하는 예제입니다.
+
+Python
+
+import subprocess
+
+# Define the command and parameters
+command = "c:\\aaa.bat"
+parameters = ["param1", "param2", "param3"]
+
+# Combine the command and parameters
+full_command = [command] + parameters
+
+# Run the command with parameters
+subprocess.run(full_command)
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+위의 코드를 실행하면, c:\aaa.bat 파일이 실행되고 param1, param2, param3 파라미터가 전달됩니다. 이 함수는 다른 bat 파일을 실행하고 다른 파라미터를 전달하는 데도 사용할 수 있습니다.
+
+------------------------------------------------------------------------
+
+UNIX에서 오라클 PL-SQL을 실행하고 파라미터 2개를 전달하는 스크립트를 작성하였습니다. 아래 코드는 sqlplus 명령어를 사용하여 PL-SQL 스크립트를 실행하는 예제입니다.
+
+#!/bin/bash
+
+# Define the parameters
+param1="$1"
+param2="$2"
+
+# Define the Oracle credentials
+username="your_username"
+password="your_password"
+database="your_database"
+
+# Run the PL-SQL script with parameters
+sqlplus -s $username/$password@$database <<EOF
+@your_script.sql $param1 $param2
+exit;
+EOF
+
+위의 스크립트를 실행하면, your_script.sql 파일이 실행되고 param1, param2 파라미터가 전달됩니다. 이 스크립트는 다른 PL-SQL 스크립트를 실행하고 다른 파라미터를 전달하는 데도 사용할 수 있습니다.
+
+위에 쏘스 만드는 파이썬 소스
+
+파이썬으로 SQLite의 SCRIPT 테이블에서 username, password, database, your_script, param1, param2 칼럼을 읽어서 스크립트를 생성하고, 생성된 스크립트를 SCRIPT_DATA 칼럼에 업데이트하는 프로그램을 작성하였습니다. 아래 코드는 파이썬의 sqlite3 모듈을 사용하여 SQLite 데이터베이스에 접속하고, SQL 쿼리를 실행하는 예제입니다.
+
+Python
+
+import sqlite3
+
+# Connect to the SQLite database
+conn = sqlite3.connect('your_database.db')
+c = conn.cursor()
+
+# Query the SCRIPT table
+c.execute("SELECT username, password, database, your_script, param1, param2 FROM SCRIPT")
+rows = c.fetchall()
+
+# Iterate over each row
+for row in rows:
+    # Extract the values
+    username, password, database, your_script, param1, param2 = row
+
+    # Create the script
+    script = f"""#!/bin/bash
+
+# Run the PL-SQL script with parameters
+sqlplus -s {username}/{password}@{database} <<EOF
+@{your_script} {param1} {param2}
+exit;
+EOF"""
+
+    # Update the SCRIPT_DATA column with the created script
+    c.execute("UPDATE SCRIPT SET SCRIPT_DATA = ? WHERE username = ? AND password = ? AND database = ? AND your_script = ? AND param1 = ? AND param2 = ?", (script, username, password, database, your_script, param1, param2))
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
+print("The scripts have been successfully created and updated in the SCRIPT_DATA column.")
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+위의 코드를 실행하면, SCRIPT 테이블의 각 행에 대해 스크립트가 생성되고, 생성된 스크립트가 SCRIPT_DATA 칼럼에 업데이트됩니다.
+
+=========================================
+파이썬으로 키움증권에 접속하는 코드를 찾았습니다. 아래는 키움증권 Open API를 파이썬에서 사용하는 방법에 대한 예제입니다1.
+
+먼저, 키움증권 Open API를 사용하기 위해 필요한 준비 작업을 진행해야 합니다1:
+
+키움증권에서 Open API+ 서비스를 신청합니다2.
+키움 Open API+ 모듈을 다운로드합니다2.
+KOA Studio를 다운로드하고 설치합니다2.
+KOA Studio를 실행하여 Open API 접속 메뉴를 선택하여 로그인합니다1.
+그리고 나서, 파이썬에서 키움증권 Open API를 사용하는 방법은 다음과 같습니다1:
+
+pykiwoom 모듈을 설치합니다. 이 모듈은 키움증권 Open API를 파이썬에서 보다 쉽게 사용할 수 있도록 하는 모듈입니다1.
+로그인을 합니다1.
+사용자 정보를 얻어옵니다1.
+종목 코드를 얻습니다1.
+종목명을 얻습니다1.
+이러한 방법을 통해 키움증권 Open API를 파이썬에서 사용할 수 있습니다
+
+============================================================================
+이미지를 엑셀로 출력
+
+파이썬으로 이미지 파일을 읽어서 셀이 cell 사이즈 1x1에 이미지와 같이 엑셀에 그림을 그리는 코드를 실행했습니다. 하지만, 이 코드는 실패했습니다. 그 이유는 'image.png’라는 이미지 파일을 찾을 수 없었기 때문입니다.
+
+아래는 실행한 파이썬 코드입니다:
+
+Python
+
+import openpyxl
+from PIL import Image
+
+# Load the image
+img = Image.open('image.png')
+
+# Resize the image to a smaller size for better performance
+img.thumbnail((img.width, img.height))
+
+# Convert the image to RGB
+rgb_img = img.convert('RGB')
+
+# Create a new workbook and get the active sheet
+wb = openpyxl.Workbook()
+ws = wb.create_sheet('sheet1')
+ws = wb.active
+
+# Iterate over the pixels in the image
+for i in range(rgb_img.width):
+    for j in range(rgb_img.height):
+        # Get the RGB values of the pixel
+        r, g, b = rgb_img.getpixel((i, j))
+        
+        # Convert the RGB values to a hex color code
+        color = "{:02x}{:02x}{:02x}".format(r, g, b)
+        
+        # Set the background color of the cell at the corresponding position to the color of the pixel
+        ws.cell(row=j+1, column=i+1).fill = openpyxl.styles.PatternFill(start_color=color, end_color=color, fill_type="solid")
+
+# Save the workbook
+wb.save('output.xlsx')
+ 
+# Print a success message
+print("The image was successfully drawn in the Excel file 'output.xlsx'.")
+
+=====================================================
+
+파이썬으로 오라클 데이터베이스에 접속하여 ‘order’ 테이블에서 일별, 주문지역별 판매금액을 구하고, 이를 바 차트로 시각화하는 코드를 작성해드릴게요. 아래는 그 예시입니다:
+
+Python
+
+import cx_Oracle
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 오라클 데이터베이스에 연결
+dsn_tns = cx_Oracle.makedsn('호스트', '포트', service_name='서비스 이름')
+conn = cx_Oracle.connect(user='사용자 이름', password='비밀번호', dsn=dsn_tns)
+
+# SQL 쿼리 실행
+query = """
+SELECT TO_CHAR(order_date, 'YYYY-MM-DD') AS order_date, region, SUM(sales_amount) AS total_sales
+FROM order
+GROUP BY TO_CHAR(order_date, 'YYYY-MM-DD'), region
+ORDER BY order_date, region
+"""
+df = pd.read_sql(query, conn)
+
+# 데이터베이스 연결 종료
+conn.close()
+
+# 바 차트 그리기
+for region in df['region'].unique():
+    region_df = df[df['region'] == region]
+    plt.bar(region_df['order_date'], region_df['total_sales'], label=region)
+
+plt.xlabel('Order Date')
+plt.ylabel('Total Sales')
+plt.title('Daily Sales by Region')
+plt.legend()
+plt.show()
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+이 코드는 오라클 데이터베이스에 연결하여 ‘order’ 테이블에서 일별, 주문지역별 판매금액을 조회하고, 이를 바 차트로 시각화합니다. 이 코드를 실행하려면 ‘호스트’, ‘포트’, ‘서비스 이름’, ‘사용자 이름’, '비밀번호’를 실제 오라클 데이터베이스의 정보로 교체해야 합니다.
+
+==> 선차트 그리기
+# 선 차트 그리기
+colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+for i, region in enumerate(df['region'].unique()):
+    region_df = df[df['region'] == region]
+    plt.plot(region_df['order_date'], region_df['total_sales'], label=region, color=colors[i % len(colors)])
+
+plt.xlabel('Order Date')
+plt.ylabel('Total Sales')
+plt.title('Daily Sales by Region')
+plt.legend()
+plt.show()
+=========================
+원형 챠트 그리기
+
+파이썬으로 오라클 데이터베이스에 접속하여 ‘order’ 테이블에서 주문지역별 판매금액을 구하고, 이를 원형 차트로 시각화하는 코드를 작성해드릴게요. 아래는 그 예시입니다:
+
+Python
+
+import cx_Oracle
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 오라클 데이터베이스에 연결
+dsn_tns = cx_Oracle.makedsn('호스트', '포트', service_name='서비스 이름')
+conn = cx_Oracle.connect(user='사용자 이름', password='비밀번호', dsn=dsn_tns)
+
+# SQL 쿼리 실행
+query = """
+SELECT region, SUM(sales_amount) AS total_sales
+FROM order
+GROUP BY region
+ORDER BY region
+"""
+df = pd.read_sql(query, conn)
+
+# 데이터베이스 연결 종료
+conn.close()
+
+# 원형 차트 그리기
+plt.pie(df['total_sales'], labels=df['region'], autopct='%1.1f%%')
+plt.title('Sales by Region')
+plt.show()
+
+
+==========================================================================
+
+특정 PIVOT 공부
+import matplotlib.pyplot as plt
+
+# Define the ticker symbol and timeframe
+ticker_symbol = 'AAPL'
+start_date = '2023-01-01'
+end_date = '2024-01-01'
+
+# Fetch historical price data
+stock_data = yf.download(ticker_symbol, start=start_date, end=end_date)
+
+ef calculate_pivot_points(high, low, close):
+    pivot = (high + low + close) / 3
+    support1 = (2 * pivot) - high
+    resistance1 = (2 * pivot) - low
+    support2 = pivot - (high - low)
+    resistance2 = pivot + (high - low)
+    return pivot, support1, resistance1, support2, resistance2
+
+# Assuming 'stock_data' contains Open, High, Low, Close prices
+pivot, support1, resistance1, support2, resistance2 = calculate_pivot_points(
+    stock_data['High'],
+    stock_data['Low'],
+    stock_data['Close']
+)
+
+print("Pivot Point:", pivot[-1])
+print("Support 1:", support1[-1])
+print("Resistance 1:", resistance1[-1])
+print("Support 2:", support2[-1])
+print("Resistance 2:", resistance2[-1])
+
+# Plotting Pivot Points
+plt.figure(figsize=(10, 6))
+plt.plot(stock_data.index, stock_data['Close'], label='Close Price')
+plt.axhline(y=pivot[-1], color='r', linestyle='--', label='Pivot')
+plt.axhline(y=support1[-1], color='g', linestyle='--', label='Support 1')
+plt.axhline(y=resistance1[-1], color='b', linestyle='--', label='Resistance 1')
+plt.title('Pivot Points')
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.legend()
+plt.show()
+
+=====================================================
+SQLite 데이터베이스 'YBDB’의 ‘theWorkd’ 테이블에서 ‘word’ 칼럼을 읽어 한글 문자의 초성만 추출하는 파이썬 코드입니다. 이 코드는 각 한글 문자를 분리하고, 초성을 구한 다음 결과를 출력합니다.
+
+Python
+
+import sqlite3
+
+# 한글 초성 리스트
+CHOSUNG_LIST = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+
+# 유니코드 한글 시작 : 44032, 끝 : 55199
+BASE_CODE, CHOSUNG, JUNGSUNG = 44032, 588, 28
+
+# 초성 추출 함수
+def get_chosung(letter):
+    if '가' <= letter <= '힣':
+        char_code = ord(letter) - BASE_CODE
+        chosung_index = int(char_code / CHOSUNG)
+        return CHOSUNG_LIST[chosung_index]
+    else:
+        return letter
+
+# SQLite 데이터베이스 연결 및 커서 생성
+conn = sqlite3.connect('YBDB.db')
+cursor = conn.cursor()
+
+# theWorkd 테이블에서 word 칼럼의 데이터를 가져옴
+cursor.execute("SELECT word FROM theWorkd")
+words = cursor.fetchall()
+
+# 각 단어의 초성만 추출하여 출력
+for word in words:
+    chosungs = ''
+    for char in word[0]:  # word는 튜플 형태이므로 word[0]을 사용
+        chosungs += get_chosung(char)
+    print(chosungs)
+
+# 데이터베이스 연결 종료
+conn.close()
+
+ SQLite 데이터베이스 'YBDB’의 ‘theWord’ 테이블에서 ‘word’ 칼럼을 읽어 각 한글 문자를 초성, 중성, 종성으로 분리하는 파이썬 코드입니다.
+
+Python
+
+import sqlite3
+
+# 한글 초성, 중성, 종성 리스트
+CHOSUNG_LIST = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+JUNGSUNG_LIST = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ']
+JONGSUNG_LIST = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+
+# 유니코드 한글 시작과 끝
+BASE_CODE, CHOSUNG, JUNGSUNG = 44032, 588, 28
+
+# 초성, 중성, 종성 추출 함수
+def get_korean_char_components(letter):
+    if '가' <= letter <= '힣':
+        char_code = ord(letter) - BASE_CODE
+        chosung_index = int(char_code / CHOSUNG)
+        jungsung_index = int((char_code - (CHOSUNG * chosung_index)) / JUNGSUNG)
+        jongsung_index = int((char_code - (CHOSUNG * chosung_index) - (JUNGSUNG * jungsung_index)))
+        
+        return (CHOSUNG_LIST[chosung_index], JUNGSUNG_LIST[jungsung_index], JONGSUNG_LIST[jongsung_index])
+    else:
+        return (letter, '', '')
+
+# SQLite 데이터베이스 연결 및 커서 생성
+conn = sqlite3.connect('YBDB.db')
+cursor = conn.cursor()
+
+# theWord 테이블에서 word 칼럼의 데이터를 가져옴
+cursor.execute("SELECT word FROM theWord")
+words = cursor.fetchall()
+
+# 각 단어의 초성, 중성, 종성을 추출하여 출력
+for word in words:
+    for char in word[0]:  # word는 튜플 형태이므로 word[0]을 사용
+        chosung, jungsung, jongsung = get_korean_char_components(char)
+        print(f'초성: {chosung}, 중성: {jungsung}, 종성: {jongsung}')
+
+# 데이터베이스 연결 종료
+conn.close()
+
+=================================================================
+파이썬에서 EUC-KR 인코딩으로 된 문자열을 UTF-8로 변환하는 코드는 다음과 같습니다. 이 예제에서는 '한글’이라는 단어를 사용하겠습니다.
+
+# EUC-KR로 인코딩된 문자열
+euc_kr_string = "한글".encode('euc-kr')
+
+# UTF-8로 디코딩
+utf_8_string = euc_kr_string.decode('euc-kr').encode('utf-8')
+
+print(utf_8_string)  # b'\xed\x95\x9c\xea\xb8\x80'
+
+- uft-8을 euc-kr로 바꾸는 것은 반대로 하면 됌
+
+==========================================
+끝말잇기 게임을 만드는 것은 재미있는 프로젝트입니다! 아래는 SQLite 데이터베이스 'YBDB’의 ‘WORDS’ 테이블에 있는 한글 단어를 사용하여 사용자와 컴퓨터가 대결하는 끝말잇기 게임을 만드는 파이썬 코드입니다. 이 게임에서 사용자가 단어를 입력하면 컴퓨터는 해당 단어의 끝 글자로 시작하는 새로운 단어를 찾아 이어갑니다.
+
+Python
+
+import sqlite3
+import random
+
+# SQLite 데이터베이스 연결 및 커서 생성
+conn = sqlite3.connect('YBDB.db')
+cursor = conn.cursor()
+
+# WORDS 테이블에서 모든 단어를 가져옴
+cursor.execute("SELECT word FROM WORDS")
+word_list = [word[0] for word in cursor.fetchall()]
+
+# 게임을 시작하는 함수
+def start_game():
+    print("끝말잇기 게임을 시작합니다. '종료'를 입력하면 게임이 종료됩니다.")
+    last_word = input("첫 단어를 입력하세요: ")
+    
+    # 게임 루프
+    while True:
+        # 사용자가 종료를 원할 경우
+        if last_word == '종료':
+            print("게임을 종료합니다.")
+            break
+        
+        # 컴퓨터가 단어를 찾음
+        possible_words = [word for word in word_list if word.startswith(last_word[-1])]
+        if possible_words:
+            computer_word = random.choice(possible_words)
+            print(f"컴퓨터의 단어: {computer_word}")
+            word_list.remove(computer_word)  # 사용된 단어는 리스트에서 제거
+        else:
+            print("더 이상 가능한 단어가 없습니다. 사용자 승리!")
+            break
+        
+        # 사용자가 단어를 입력
+        last_word = input("다음 단어를 입력하세요: ")
+        if last_word not in word_list:
+            print("그 단어는 리스트에 없거나 이미 사용되었습니다. 컴퓨터 승리!")
+            break
+        else:
+            word_list.remove(last_word)  # 사용된 단어는 리스트에서 제거
+
+# 게임 시작
+start_game()
+
+# 데이터베이스 연결 종료
+conn.close()
+
+=========================================================
+------------------------------------------------------
+
+주식 데이터를 관리하기 위한 파이썬 코드를 작성해드릴게요. 아래 코드는 주식 데이터를 튜플로 관리하고, 새로운 종목 코드가 들어오면 데이터를 추가하고, 기존 데이터를 업데이트하며, 삭제 요청이 있을 경우 해당 데이터를 삭제하는 기능을 수행합니다.
+
+
+class StockData:
+    def __init__(self):
+        self.data = {}  # 종목코드를 키로 하고, 나머지 정보를 튜플로 저장하는 딕셔너리
+
+    def insert_or_update(self, code, name, start_amount, low_amount, high_amount, end_amount):
+        self.data[code] = (name, start_amount, low_amount, high_amount, end_amount)
+
+    def delete(self, code):
+        if code in self.data:
+            del self.data[code]
+
+# 사용 예시
+stock_data = StockData()
+
+# 새로운 데이터 추가 또는 업데이트
+stock_data.insert_or_update('005930', '삼성전자', 50000, 49500, 50500, 50000)
+stock_data.insert_or_update('000660', 'SK하이닉스', 80000, 79000, 81000, 80000)
+
+# 데이터 삭제
+stock_data.delete('005930')
+
+# 현재 데이터 확인
+print(stock_data.data)
+
+
+===================
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Kioseff Trading
+
+//@version=5
+indicator("The Next Pivot [Kioseff Trading]", overlay=true, max_lines_count = 500, max_boxes_count = 500, max_labels_count = 500)
+
+
+import TradingView/ZigZag/6 as ZigZagLib 
+import HeWhoMustNotBeNamed/arraymethods/1
+import RicardoSantos/MathOperator/2
+
+historical    = input.int(defval = 20, title = "Correlation Length", minval = 5, maxval = 100, group = "How Long Should The Correlating Sequences Be? (Bars Back)")
+forecastLen   = input.int(defval = 50, minval = 15, maxval = 250, title = "Forecast Length", group = "How Long Should The Forecast Be?")
+
+typec         = input.string("Cosine Similarity", title = "Similarity Calculation", options = 
+ ["Spearmen", "Pearson", "Euclidean (Absolute Difference)", "Cosine Similarity", "Mean Squared Error", "Kendall"], group = "Similarity Method"), var t = time
+simtype       = input.string(defval = "Price", title = "Looks For Similarities In", options = ["%Change", "Price"], group = "Similarity Method")
+tim           = input.int(defval = 5000, minval = 500, step = 1000, title = "Bars Back To Search", 
+             group ="How Many Bars Back Should We Look To Find The Most Similar Sequence?")
+
+zonly         = input.bool(defval = true , title = "Show Projected Zig Zag"   , group = "Aesthetics", inline = "Projected")
+ponly         = input.bool(defval = true, title = "Show Projected Price Path",  group = "Aesthetics", inline = "Projected")
+on            = input.bool(defval = false, title = "", inline = "Lin", group = "Aesthetics")
+stdev         = input.float(defval = 1, title = "Lin Reg σ", minval = 0, step = 0.1, inline = "Lin",  group = "Aesthetics")
+
+projcol       = input.color(defval = #14D990,      title = "Projected Zig Zag Color", inline = "1", group = "Aesthetics")
+forecastCol   = input.color(defval = color.white , title = "Forecast Color  ",        inline = "1", group = "Aesthetics")
+
+var ret = array.new_float(), var mastertime = array.new_int(), result = matrix.new<float>(2, 1, -1e8), float [] recRet = na
+
+method rankEstimate(array <float> id, iteration) => 
+
+    math.round((id.percentrank(iteration) / 100) * (historical - 1) + 1)
+
+method effSlice(array<float> id, iteration) => 
+
+    id.slice(iteration, iteration + historical)
+
+method update (matrix <float> id, float id2, i) => 
+
+    if id2.over_equal(id.get(0, 0))
+
+        id.set(0, 0, id2)
+        id.set(1, 0, i)
+
+method spearmen (matrix <float> id) =>
+
+
+    denominator = (historical * (math.pow(historical, 2) - 1))
+    estimate    = array.new_int()
+
+    for i = 0 to recRet.size() - 1
+        estimate.push(recRet.rankEstimate(i))
+
+    for i = 0 to ret.size() - historical * 2 - forecastLen
+            
+        slice = ret.effSlice(i)
+        d2    = array.new_float(historical)
+
+        for x = 0 to historical - 1
+
+            s   = estimate.get(x)
+            s1  = slice.rankEstimate(x)
+            fin = math.pow(s - s1, 2)
+            d2.set(x, fin)
+        
+        r  = 1 - (6 * d2.sum()) / denominator
+
+        id.update(i, r)
+
+method pearson (matrix <float> id) => 
+        
+    stdevA = recRet.stdev() 
+
+    for i = 0 to ret.size() - historical * 2 - forecastLen
+
+        slice = ret.effSlice(i)
+        p     = slice.covariance(recRet) / (stdevA * slice.stdev())
+
+        id.update(p, i)
+
+method euc (matrix <float> id) => 
+
+    for i = 0 to ret.size() - historical * 2 - forecastLen
+                
+        slice = ret.effSlice(i)
+        euc   = array.new_float(historical)
+             
+        for x = 0 to historical - 1
+
+            euc.set(x, math.pow(recRet.get(x) - slice.get(x), 2))
+
+        inv = 1 / (1 + math.sqrt(euc.sum()))
+
+        id.update(inv, i)
+
+
+method cosine(matrix <float> id) => 
+    
+    nA = 0.
+
+    for i = 0 to recRet.size() - 1
+        nA += math.pow(recRet.get(i), 2)
+
+    nA := math.sqrt(nA)
+
+    for i = 0 to ret.size() - historical * 2 - forecastLen
+            
+        slice = ret.effSlice(i)
+        prod  = 0., nB = 0.
+
+        for x = 0 to historical - 1
+
+            prod += recRet.get(x) * slice.get(x)
+            nB   += math.pow(slice.get(x), 2)
+        
+        cos = prod / (nA * math.sqrt(nB))
+        id.update(cos, i)
+
+    
+method mse (matrix <float> id) => 
+    
+    for i = 0 to ret.size() - historical * 2 - forecastLen
+            
+        slice = ret.effSlice(i)
+        mse   = array.new_float(historical)
+
+        for x = 0 to historical - 1
+            mse.set(x, math.pow(slice.get(x) - recRet.get(x), 2))
+
+        mseC = 1 / (1 + mse.sum() / historical)
+
+        id.update(mseC, i)
+
+
+method kendall (matrix <float> id) => 
+
+    for i = 0 to ret.size() - historical * 2 - forecastLen
+         
+        slice     = ret.effSlice(i)
+        valMat    = matrix.new<float>(4, math.ceil(slice.size() * (slice.size() - 1) / 2), 0)
+        iteration = 0
+
+        for x = 0 to slice.size() - 1
+            for y = x + 1 to historical - 1
+                if y > historical - 1
+                    break
+
+                diff1 = recRet.get(y)   - recRet.get(x)
+                diff2 = slice.get(y) - slice.get(x)
+
+                switch math.sign(diff1 * diff2)
+
+                    1  => valMat.set(0, iteration, 1)
+                    -1 => valMat.set(1, iteration, 1)
+
+                if diff1.equal(0)
+                    valMat.set(2, iteration, 1)
+
+                if diff2.equal(0)
+                    valMat.set(3, iteration, 1)
+                
+                iteration += 1    
+
+        con = valMat.row(0).sum(), dis = valMat.row(1).sum()
+        aT  = valMat.row(2).sum(), bT  = valMat.row(3).sum()
+
+        fin = (con - dis) / math.sqrt((con + dis + aT) * (con + dis + bT))
+
+        id.update(fin, i)
+
+method determine(bool id, a, b) => 
+
+    switch id 
+        
+        true => a
+        =>      b
+
+method updateZig(array <line> id, x1, y1, x2, y2) => 
+
+    id.push(line.new(x1, y1, x2, y2, color = projcol, width = 2))
+
+method float (int id) => float(id) 
+
+
+var zigZag = ZigZagLib.newInstance(
+  ZigZagLib.Settings.new(
+      0.00001,     //input.float(0.00001, "Price deviation for reversals (%)", 0.00001, 100.0, 0.5, "0.00001 - 100", group = "Aesthetics"),
+      5,           //input.int(5, "Pivot legs", 2, group = "Aesthetics"),
+      #00000000, //input(#2962FF, "Line color", group = "Aesthetics", inline = "1"),
+      false,       //input(true, "Extend to last bar"),
+      false,       //input(false, "Display reversal price", group = "Aesthetics"),
+      false,       //input(false, "Display cumulative volume", group = "Aesthetics"),
+      false,       //input(false, "Display reversal price change", inline = "priceRev", group = "Aesthetics"),
+      "Absolute",  //input.string("Absolute", "", ["Absolute", "Percent"], inline = "priceRev", group = "Aesthetics"),
+      true)
+ ),                                     zigZag.update()
+
+if typec == "Kendall"
+
+    tim        := math.min(tim, 1500)
+    historical := math.min(20, historical)
+
+
+var closeArr = array.new_float(), var loArr    = array.new_float()
+var hiArr    = array.new_float(), var timeArr  = array.new_int  (),
+                         mastertime.push(time)
+
+if last_bar_index - bar_index <= tim
+    
+    val = switch simtype
+
+        "%Change" => math.log(close / close[1])
+        =>           close
+
+    timeArr .push(time), closeArr.push(close)
+    ret     .push(val) , loArr   .push(low),
+             hiArr   .push(high)
+
+if barstate.islastconfirmedhistory 
+
+    lineAll = line.all, box.all.flush()
+    var xcor = last_bar_index 
+
+    for i = 0 to lineAll.size() - 1
+        if lineAll.get(i).get_x2() > t
+
+            for x = mastertime.size() - 1 to 0 
+                if mastertime.get(x).float().equal(lineAll.get(i).get_x2())
+
+                    xcor := x
+                    break   
+    
+    if lineAll.size().float().over(0) 
+        for i = lineAll.size() - 1 to 0
+            if lineAll.get(i).get_x2().float().under(1e8)
+                lineAll.get(i).delete()
+
+    recRet := ret.slice(ret.size() - historical, ret.size())
+
+    switch typec
+
+        "Spearmen"                        => result.spearmen()
+        "Pearson"                         => result.pearson ()
+        "Euclidean (Absolute Difference)" => result.euc     ()
+        "Cosine Similarity"               => result.cosine  ()
+        "Mean Squared Error"              => result.mse     ()
+        "Kendall"                         => result.kendall ()
+
+    startarr                              = int(result.get(1, 0))
+    midarr                                = startarr + historical
+    endarr                                = midarr   + forecastLen
+
+    float [] lineData = na
+    
+    if simtype == "%Change"
+        lineData := ret.slice(startarr + historical + 1, endarr + 1)
+    
+    else 
+        lineData := array.new_float()
+
+        for i = startarr + historical + 1 to endarr
+            lineData.push(closeArr.get(i) / closeArr.get(i - 1) - 1)
+            
+    projectZig = array.new_line(), lines = array.new_line(), diffArr = array.new_float()
+
+    if lineAll.size().float().over(0) 
+        for i = 1 to lineAll.size() - 1
+
+            diffArr.push(math.abs((lineAll.get(i).get_y2() - lineAll.get(i - 1).get_y2()) / lineAll.get(i - 1).get_y2()))
+    
+    lasty2 = lineAll.last().get_y2(), lasty22 = lineAll.get(lineAll.size() - 2).get_y2(), 
+                         threshold = diffArr.percentile_nearest_rank(25)
+
+    lines.push(line.new(bar_index, close, bar_index + 1, close * (1 + lineData.first()), 
+                         color = ponly.determine(forecastCol, #00000000), 
+                         style =          line.style_dotted
+                         ))
+
+    if zonly 
+        projectZig.updateZig(xcor, lineAll.last().get_y2(), bar_index, lasty22.under(lasty2).determine(low, high)) 
+
+    for i = 1 to lineData.size() - 1
+        lines.push(
+                 line.new(
+                     
+                     lines.get(i - 1).get_x2(), lines.get(i - 1).get_y2(), lines.get(i - 1).get_x2() + 1, 
+                     lines.get(i - 1).get_y2() * (1 + lineData.get(i)), color = ponly.determine(forecastCol, #00000000), style = line.style_dotted))
+
+        if zonly 
+
+            if projectZig.size().float().equal(1)
+                
+                if lasty22.under(lasty2)
+
+                    var min = 1e8, var max = 0.
+
+                    min := math.min(lines.last().get_y2(), min, projectZig.last().get_y2())
+
+                    switch min.equal(lines.last().get_y2())
+
+                        true => max := 0
+                        =>      max := math.max(max, lines.last().get_y2())
+
+                    projectZig.last().set_y2(min)
+                    projectZig.last().set_x2(min.equal(lines.last().get_y2()).determine(lines.last().get_x2(), projectZig.last().get_x2()))
+
+                    if math.abs((max - min) / min).over_equal(threshold) and max.not_equal(0) 
+
+                        maxmap = map.new<float, int>(), count = hiArr.size() - 1
+
+                        for x = mastertime.size() - 1 to 0 
+                            switch mastertime.get(x) > lineAll.last().get_x2()
+
+                                true => maxmap.put(hiArr.get(count), x)
+                                =>      break 
+
+                            count -= 1
+
+                        keymaxx = maxmap.keys()
+
+                        if keymaxx.max() > projectZig.last().get_y1()
+                            projectZig.last().set_xy1(maxmap.get(keymaxx.max()), keymaxx.max())
+
+
+                        projectZig.updateZig(projectZig.last().get_x2(), projectZig.last().get_y2(), lines.last().get_x2(), max) 
+
+                else 
+
+                    if i.float().equal(1)
+
+                        min = map.new<float, int>(), count = loArr.size() - 1
+
+                        for x = mastertime.size() - 1 to 0 
+
+                            switch mastertime.get(x).float().over_equal(lineAll.last().get_x2())
+
+                                true => min.put(loArr.get(count), x)
+                                =>      break
+
+                            count -= 1
+
+                        keys = min.keys()
+
+                        if keys.min().under(projectZig.last().get_y2())
+
+                            projectZig.last().set_y2(math.min(keys.min(), lines.last().get_y2()))
+
+                            x2 = switch lines.last().get_y2().under(keys.min())
+
+                                true => lines.last().get_x2()
+                                =>      min  .get(keys.min())
+
+                            projectZig.last().set_x2(x2), projectZig.last().set_x1(mastertime.indexof(lineAll.get(lineAll.size() - 2).get_x2()))
+                            projectZig.last().set_y1(lineAll.get(lineAll.size() - 2).get_y2())
+
+                            projectZig.updateZig(projectZig.last().get_x2(), projectZig.last().get_y2(), lines.last().get_x2(), lines.last().get_y2())
+
+                    var min = 1e8, var max = 0.
+
+                    max := math.max(lines.last().get_y2(), max)
+
+                    switch max.equal(lines.last().get_y2())
+
+                        true => min := 1e8
+                        =>      min := math.min(min, lines.last().get_y2())
+
+                    projectZig.last().set_y2(max)
+                    projectZig.last().set_x2(max.equal(lines.last().get_y2()).determine(lines.last().get_x2(), projectZig.last().get_x2()))
+
+                    if math.abs((max - min) / min).over_equal(threshold) and min.not_equal(1e8)
+
+                        projectZig.updateZig(projectZig.last().get_x2(), projectZig.last().get_y2(), lines.last().get_x2(), min) 
+    
+
+            else if projectZig.size().float().over(1)
+
+                if projectZig.last().get_y2().over_equal(projectZig.get(projectZig.size() - 2).get_y2())
+                    var max =0., var min = 1e8
+                    max := math.max(max, lines.last().get_y2(), projectZig.last().get_y2())
+
+                    switch max.equal(lines.last().get_y2())
+
+                        true => min := 1e8
+                        =>      min := math.min(min, lines.last().get_y2())
+
+                    projectZig.last().set_y2(math.max(max, projectZig.last().get_y2()))
+                    projectZig.last().set_x2(max.equal(lines.last().get_y2()).determine(lines.last().get_x2(), projectZig.last().get_x2()))
+
+                    if math.abs((max - min) / min).over_equal(threshold) and min.not_equal(1e8) 
+
+                        if projectZig.size().float().over(2)
+                          or projectZig.size().float().equal(2) and projectZig.first().get_y1().equal(lineAll.last().get_y2())
+
+                            projectZig.updateZig(projectZig.last().get_x2(), projectZig.last().get_y2(), lines.last().get_x2(), min)
+   
+
+                        else if projectZig.size().float().equal(2)
+
+                            maxx = map.new<float, int>(), count = hiArr.size() - 1
+
+                            for x = mastertime.size() - 1 to 0 
+                                switch mastertime.get(x).float().over(lineAll.last().get_x2())
+
+                                    true => maxx.put(hiArr.get(count), x)
+                                    =>      break
+
+                                count -= 1
+
+                            keyMax = maxx.keys()
+
+                            if keyMax.max().over(max) 
+                                projectZig.last().set_y2(keyMax.max()), projectZig.last().set_x2(maxx.get(keyMax.max()))
+
+                                if projectZig.last().get_x1().float().not_equal(last_bar_index)
+
+                                    switch lineAll.last().get_x1().float().over(lineAll.last().get_x2())
+
+                                        true => projectZig.last().set_xy1(mastertime.indexof(lineAll.last().get_x1()), lineAll.last().get_y1())                                  
+                                        =>      projectZig.last().set_xy1(mastertime.indexof(lineAll.last().get_x2()), lineAll.last().get_y2())
+
+                            projectZig.remove(projectZig.size() - 2).delete()
+                            projectZig.updateZig(projectZig.last().get_x2(), projectZig.last().get_y2(), lines.last().get_x2(), min)
+    
+                        max := 0, min := 1e8
+
+                else if projectZig.last().get_y2().under(projectZig.get(projectZig.size() - 2).get_y2())
+
+                    var min = 1e8, var max = 0.
+                    min := math.min(lines.last() .get_y2(), min, projectZig.last().get_y2())
+
+                    switch min.equal(lines.last().get_y2())
+
+                        true =>  max := 0
+                        =>       max := math.max(max, lines.last().get_y2())
+
+                    projectZig.last().set_y2(min)
+                    projectZig.last().set_x2(min.equal(lines.last().get_y2()).determine(lines.last().get_x2(), projectZig.last().get_x2()))
+
+                    if math.abs((max - min) / min).over_equal(threshold) and max.not_equal(0) 
+
+                        if projectZig.size().float().over(1)
+
+                            max := 0, min := 1e8
+
+                            projectZig.updateZig(projectZig.last().get_x2(), projectZig.last().get_y2(), lines.last().get_x2(), lines.last().get_y2())
+  
+
+            if i.float().equal(lineData.size() - 1)
+                if projectZig.size().float().equal(1) 
+
+                    valMap = map.new<float, int>()
+
+                    for x = lines.size() - 1 to 0
+                        switch lines.get(x).get_x2().float().over(projectZig.last().get_x2())
+
+                            true => valMap.put(lines.get(x).get_y2(), x)
+                            =>      break
+
+                    keys = valMap.keys(), cond = projectZig.last().get_y2().under(projectZig.last().get_y1())
+
+                    [finx, finy] = switch cond
+
+                        true => [valMap.get(keys.max()), keys.max()]
+                        =>      [valMap.get(keys.min()), keys.min()]
+
+                    projectZig.updateZig(projectZig.last().get_x2(), projectZig.last().get_y2(), bar_index + finx + 1, finy) 
+
+    if on 
+
+        linReg = matrix.new<float>(4, forecastLen)
+
+        for i = 0 to forecastLen - 1
+
+            linReg.set(0, i, i + 1), linReg.set(1, i, lines.get(i).get_y2())
+
+        b = linReg.row(0)
+
+        for i = 0 to lineData.size() - 1
+
+            linReg.set(2, i, math.pow(b.get(i) - b.avg(), 2))
+            linReg.set(3, i, (b.get(i) - b.avg()) * (linReg.row(1).get(i) - linReg.row(1).avg()))
+
+        bx = linReg.row(3).sum() / linReg.row(2).sum() 
+        mx = linReg.row(1).avg() - (bx * b.avg())
+
+        upper = line.new(bar_index, (bx + mx) + linReg.row(1).stdev() * stdev, bar_index + linReg.row(1).size(), 
+                                 (bx * linReg.row(1).size() + mx) + linReg.row(1).stdev() * stdev, 
+                                 color = #6929F2
+                                 )
+
+        lower = line.new(bar_index, (bx + mx) - linReg.row(1).stdev() * stdev, bar_index + linReg.row(1).size(), 
+                                 (bx * linReg.row(1).size() + mx) - linReg.row(1).stdev() * stdev, 
+                                 color = #6929F2
+                                 )
+
+        linefill.new(upper, lower, color.new(#6929F2, 75))
+
+    slicex    = closeArr.slice(startarr, endarr + 1)    
+    sliceHi   = hiArr   .slice(closeArr.size() - historical, closeArr.size())
+    sliceLo   = loArr   .slice(closeArr.size() - historical, closeArr.size())
+
+    box.new(timeArr.get(startarr), slicex.min(), timeArr.get(midarr), slicex.max(), 
+                                     bgcolor      = color.new(color.blue, 70),
+                                     xloc         = xloc.bar_time,
+                                     border_color = #00000000
+                                     )
+    
+    box.new(timeArr.get(midarr), slicex.min(), timeArr.get(endarr), slicex.max(), 
+                                     bgcolor      = color.new(forecastCol, 70),
+                                     xloc         = xloc.bar_time, 
+                                     border_color = #00000000
+                                     )
+
+    box.new(bar_index - historical + 1, sliceHi.max(), bar_index, sliceLo.min(), 
+                             bgcolor      = color.new(color.blue, 80), 
+                             border_color = #00000000
+                             )
+
+    var tab = table.new(position.bottom_right, 5, 5, frame_color = color.white, border_color = color.white, frame_width = 1, border_width = 1)
+
+    tab.cell(0, 0, text = "Searching " + str.tostring(math.min(last_bar_index, tim), "##") + " Bars Back",     
+                                         text_color = color.white,
+                                         text_size  = size.small   ,
+                                         bgcolor    = #00000050)
+
+
+=======================================================================
+
+clss 개념
+클래스 : 설계도
+객체 : 설계도로 만든 제품
+속성 : 클래스 안의 변수
+메서드 : 클래스 안의 함수
+생성자 : 객체를 만들때 생성되는 함수
+인스턴스 : 메모리에 살아 있는 객체
+
+class 클래스이름:
+    def 메소드이름(self):    <-- self 자기 자신이 들어감
+        명령블럭
+
+ex) class Monster:
+    def day(self):
+        print('나는 몬스터다')
+
+객체= 클래스이름()   aShark = Monster()
+객체.매서드()        aShark.say()
+
+
+class Monster:
+    def __init__(self, name, age)    <-- self는 예약된, 반드시 넣어야
+        self.name = name
+        self.age = age
+
+    def say(self):
+        print(f'나는 {self.name} {self.age}살이다')
+
+aShark = Monsger("상어", 20)
+aShark.say()  ==> 나는 상어 20살이다
+
+======================================================================
+PostgreSQL 데이터베이스의 ‘STOCK’ 테이블에서 주식 데이터를 조회하고, 웹 페이지에 종목코드, 종목명, 현재 주가, 시가, 고가, 종가를 표시한 후, 사용자가 종목코드를 클릭하면 1분 간격으로 주식의 시가, 고가, 종가를 보여주는 Python 코드의 예시입니다. Flask 웹 프레임워크와 psycopg2 라이브러리를 사용했습니다.
+
+Python
+
+from flask import Flask, render_template, request
+import psycopg2
+import psycopg2.extras
+
+app = Flask(__name__)
+
+# PostgreSQL 데이터베이스 설정
+DATABASE_URL = "postgresql://username:password@hostname:port/dbname"
+
+# 데이터베이스 연결
+def get_db_connection():
+    conn = psycopg2.connect(DATABASE_URL)
+    return conn
+
+@app.route('/')
+def stock_list():
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute('SELECT 종목코드, 종목명, 현재주가, 시가, 고가, 종가 FROM STOCK')
+    stocks = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template('stock_list.html', stocks=stocks)
+
+@app.route('/stock/<code>')
+def stock_detail(code):
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    # 1분 간격의 데이터를 조회하는 쿼리 예시입니다. 실제 쿼리는 데이터베이스의 스키마에 맞게 조정해야 합니다.
+    cur.execute('SELECT 시가, 고가, 종가 FROM STOCK WHERE 종목코드 = %s ORDER BY 시간 DESC LIMIT 60', (code,))
+    stock_data = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template('stock_detail.html', stock_data=stock_data, code=code)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+=========================================================
+GitHub 저장소의 특정 디렉토리에 있는 모든 XML 파일을 리스트로 가져와서 C:\TEMP에 저장하는 파이썬 코드를 아래와 같이 수정할 수 있습니다. 이 코드는 requests와 BeautifulSoup 라이브러리를 사용하여 GitHub 페이지의 HTML을 파싱하고, XML 파일의 URL을 찾아 리스트로 만든 후 다운로드합니다.
+
+Python
+
+import requests
+from bs4 import BeautifulSoup
+import os
+
+# GitHub 저장소의 디렉토리 URL
+url = 'https://github.com/spellcheck-ko/korean-dict-nikl/tree/master/stdict'
+
+# 요청을 보내고 응답을 받아 HTML을 파싱
+response = requests.get(url)
+response.raise_for_status()  # 요청에 실패한 경우 예외를 발생시킵니다.
+
+# BeautifulSoup 객체 생성
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# XML 파일의 URL을 담을 리스트
+xml_files = []
+
+# 모든 'a' 태그를 찾고, href 속성이 '.xml'로 끝나는지 확인
+for link in soup.find_all('a'):
+    href = link.get('href')
+    if href and href.endswith('.xml'):
+        # Raw 파일 URL로 변환
+        raw_url = f'https://raw.githubusercontent.com{href.replace('/blob/', '/')}'
+        xml_files.append(raw_url)
+
+# XML 파일을 다운로드하고 저장
+for xml_url in xml_files:
+    # 파일 이름 추출
+    file_name = os.path.basename(xml_url)
+    # 파일을 저장할 경로 설정
+    file_path = os.path.join('C:\\TEMP', file_name)
+    
+    # 파일 다운로드
+    response = requests.get(xml_url)
+    response.raise_for_status()  # 요청에 실패한 경우 예외를 발생시킵니다.
+    
+    # 바이너리 형태로 파일 쓰기
+    with open(file_path, 'wb') as file:
+        file.write(response.content)
+    
+    print(f'{file_name} 파일이 성공적으로 다운로드되어 {file_path}에 저장되었습니다.')
+
+# 필요한 라이브러리를 설치하려면 다음 명령어를 사용하세요:
+```bash
+pip install requests beautifulsoup4
+
+
+===========================
+특정 폴더에서 MP4 파일을 읽어서 YouTube 계정에 업로드하는 파이썬 스크립트의 예시입니다. 이 스크립트는 Google의 YouTube Data API를 사용하며, OAuth 2.0을 통해 사용자 인증을 처리합니다. 스크립트를 실행하기 전에, Google Cloud Console에서 프로젝트를 생성하고 YouTube Data API를 활성화해야 합니다. 또한, client_secrets.json 파일을 생성하고 필요한 인증 정보를 입력해야 합니다.
+
+Python
+
+import os
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import googleapiclient.errors
+
+scopes = ["https://www.googleapis.com/auth/youtube.upload"]
+
+def main():
+    # OAuth 인증을 위한 클라이언트 시크릿 파일 경로 설정
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+    api_service_name = "youtube"
+    api_version = "v3"
+    client_secrets_file = "YOUR_CLIENT_SECRETS_FILE.json"
+
+    # Get credentials and create an API client
+    flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+        client_secrets_file, scopes)
+    credentials = flow.run_console()
+    youtube = googleapiclient.discovery.build(
+        api_service_name, api_version, credentials=credentials)
+
+    request = youtube.videos().insert(
+        part="snippet,status",
+        body={
+            "snippet": {
+                "categoryId": "22",
+                "description": "Description of uploaded video.",
+                "title": "Test video upload."
+            },
+            "status": {
+                "privacyStatus": "private"
+            }
+        },
+        
+        # TODO: Replace 'YOUR_FILE' with the path to the video file you are uploading.
+        media_body=googleapiclient.http.MediaFileUpload("YOUR_FILE.mp4")
+    )
+    response = request.execute()
+
+    print(response)
+
+if __name__ == "__main__":
+    main()
+
+
+===========================================
+YouTube Data API를 사용하여 업로드한 비디오의 세부 정보를 업데이트하는 파이썬 스크립트를 제공할 수 있습니다. 아래는 비디오의 공개 상태, 재생목록, 설명 등을 업데이트하는 예시 코드입니다.
+
+Python
+
+import os
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import googleapiclient.errors
+
+# 사용자 인증을 위한 스코프 설정
+scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
+
+def main():
+    # 클라이언트 시크릿 파일 경로 설정
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+    api_service_name = "youtube"
+    api_version = "v3"
+    client_secrets_file = "YOUR_CLIENT_SECRETS_FILE.json"
+
+    # Get credentials and create an API client
+    flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+        client_secrets_file, scopes)
+    credentials = flow.run_console()
+    youtube = googleapiclient.discovery.build(
+        api_service_name, api_version, credentials=credentials)
+
+    # 업데이트할 비디오의 ID와 변경할 세부 정보 설정
+    update_video_id = "VIDEO_ID"  # 업데이트할 비디오의 ID
+    new_title = "Updated Title"  # 새로운 제목
+    new_description = "Updated description"  # 새로운 설명
+    new_privacy_status = "public"  # 새로운 공개 상태 ("public", "private", "unlisted")
+    new_playlist_id = "PLAYLIST_ID"  # 추가할 재생목록 ID
+
+    # 비디오 세부 정보 업데이트 요청
+    update_request = youtube.videos().update(
+        part="snippet,status",
+        body={
+            "id": update_video_id,
+            "snippet": {
+                "title": new_title,
+                "description": new_description,
+                "categoryId": "22",  # 카테고리 ID
+                "playlistId": new_playlist_id  # 재생목록 ID
+            },
+            "status": {
+                "privacyStatus": new_privacy_status
+            }
+        }
+    )
+    update_response = update_request.execute()
+
+    print(update_response)
+
+if __name__ == "__main__":
+    main()
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+이 코드에서 YOUR_CLIENT_SECRETS_FILE.json는 귀하의 클라이언트 시크릿 파일 경로로, VIDEO_ID는 업데이트할 비디오의 ID로, PLAYLIST_ID는 추가할 재생목록의 ID로 교체해야 합니다. 또한, 새로운 제목, 설명, 공개 상태 등을 귀하가 원하는 값으로 설정해야 합니다.
+
+이 스크립트를 실행하기 전에 YouTube Data API에 대한 액세스 권한이 설정되어 있고 필요한 라이브러리가 설치되어 있는지 확인하세요. 또한, 실제 사용 시에는 에러 처리 로직을 추가하여 안정성을 높여야 할 것입니다.
+
+============================================
+파이썬에서 날짜와 시간을 다루는 기본적인 예제를 몇 가지 보여드리겠습니다. datetime 모듈을 사용하여 날짜와 시간을 다루는 방법과 문자열로부터 날짜 객체를 생성하거나, 날짜 객체를 문자열로 변환하는 방법을 살펴보겠습니다.
+
+Python
+
+from datetime import datetime, timedelta
+
+# 현재 날짜와 시간을 가져옵니다.
+now = datetime.now()
+print("현재 날짜와 시간:", now)
+
+# 특정 날짜와 시간을 지정합니다.
+some_date = datetime(2024, 4, 30, 15, 27, 18)
+print("지정된 날짜와 시간:", some_date)
+
+# 날짜 형식을 문자열로 변환합니다.
+date_string = some_date.strftime('%Y-%m-%d %H:%M:%S')
+print("날짜를 문자열로 변환:", date_string)
+
+# 문자열을 날짜 형식으로 변환합니다.
+date_from_string = datetime.strptime('2024-04-30 15:27:18', '%Y-%m-%d %H:%M:%S')
+print("문자열을 날짜로 변환:", date_from_string)
+
+# 날짜에 일수를 더하거나 빼기
+date_plus = now + timedelta(days=10)
+print("10일 후 날짜:", date_plus)
+
+date_minus = now - timedelta(days=10)
+print("10일 전 날짜:", date_minus)
+
+
+==============================
+df = pd.DataFrame({'Birth':['2019-01-01 09:10:00',
+                            '2019-01-08 09:20:30',
+                            '2019-02-01 10:20:00',
+                            '2019-02-02 11:40:50',
+                            '2019-02-28 15:10:20',
+                            '2019-04-10 19:20:50',
+                            '2019-06-30 21:20:50',
+                            '2019-07-20 23:30:59']})
+
+# object 타입을 datetime64[ns] 타입으로 바꾼다 
+df['Birth'] = pd.to_datetime(df['Birth'], format='%Y-%m-%d %H:%M:%S', errors='raise')
+
+%Y: Year, ex) 2019, 2020
+%m: Month as a zero-padded, ex) 01~12
+%d: Day of the month as a zero-padded ex) 01~31
+%H: Hour (24-hour clock) as a zero-padded ex) 01~23
+%M: Minute as a zero-padded ex) 00~59
+%S: Second as a zero-padded ex) 00~59
+ex) 2019-09-01 19:30:00 =(Directivs)=> %Y-%m-%d %H:%M:%S
+
+df['Birth_date']       = df['Birth'].dt.date         # YYYY-MM-DD(문자)
+df['Birth_year']       = df['Birth'].dt.year         # 연(4자리숫자)
+df['Birth_month']      = df['Birth'].dt.month        # 월(숫자)
+df['Birth_month_name'] = df['Birth'].dt.month_name() # 월(문자)
+df['Birth_day']        = df['Birth'].dt.day          # 일(숫자)
+df['Birth_time']       = df['Birth'].dt.time         # HH:MM:SS(문자)
+df['Birth_hour']       = df['Birth'].dt.hour         # 시(숫자)
+df['Birth_minute']     = df['Birth'].dt.minute       # 분(숫자)
+df['Birth_second']     = df['Birth'].dt.second       # 초(숫자)
+df['Birth_quarter']       = df['Birth'].dt.quarter       # 분기(숫자)
+df['Birth_weekday_name']  = df['Birth'].dt.weekday_name  # 요일이름(문자) (=day_name())
+df['Birth_weekday']       = df['Birth'].dt.weekday       # 요일숫자(0-월, 1-화) (=dayofweek)
+df['Birth_weekofyear']    = df['Birth'].dt.weekofyear    # 연 기준 몇주째(숫자) (=week)
+df['Birth_dayofyear']     = df['Birth'].dt.dayofyear     # 연 기준 몇일째(숫자)
+df['Birth_days_in_month'] = df['Birth'].dt.days_in_month # 월 일수(숫자) (=daysinmonth)
+df['Birth_is_leap_year']     = df['Birth'].dt.is_leap_year     # 윤년 여부
+df['Birth_is_month_start']   = df['Birth'].dt.is_month_start   # 월 시작일 여부
+df['Birth_is_month_end']     = df['Birth'].dt.is_month_end     # 월 마지막일 여부
+df['Birth_is_quarter_start'] = df['Birth'].dt.is_quarter_start # 분기 시작일 여부
+df['Birth_is_quarter_end']   = df['Birth'].dt.is_quarter_end   # 분기 마지막일 여부
+df['Birth_is_year_start']    = df['Birth'].dt.is_year_start    # 연 시작일 여부
+df['Birth_is_year_end']      = df['Birth'].dt.is_year_end      # 연 마지막일 여부
+===================
+
+전통적인 switch 문이 없지만, 버전 3.10부터 match와 case 키워드를 사용하여 유사한 기능을 구현할 수 있습니다. 여기 간단한 예제를 보여드리겠습니다:
+
+Python
+
+def switch_example(value):
+    match value:
+        case 'a':
+            return "첫 번째 케이스"
+        case 'b':
+            return "두 번째 케이스"
+        case 'c' | 'd':
+            return "세 번째 케이스"
+        case _:
+            return "기본 케이스"
+
+# 사용 예
+print(switch_example('b'))  # "두 번째 케이스" 출력
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+위 코드에서 match 문은 주어진 value에 따라 다른 코드 블록을 실행합니다. 각 case는 value와 일치하는 경우 실행될 코드를 정의합니다. 마지막 case _는 기본 케이스로, 어떤 case도 일치하지 않을 때 실행됩니다.
+
+더 복잡한 로직이 필요하다면, 함수나 클래스를 사용하여 switch 문을 모방할 수도 있습니다. 이러한 방법은 코드를 더욱 깔끔하고 읽기 쉽게 만들어 줍니다. 파이썬에서 switch 문에 대한 더 자세한 정보는 freeCodeCamp.org에서 확인하실 수 있습니다.
+
+eval() 함수가 있습니다. 이 함수는 문자열 형태의 표현식을 평가하고 실행하는 데 사용됩니다. 여기 간단한 예제를 보여드리겠습니다:
+
+Python
+
+# eval() 함수의 기본 사용법
+result = eval('3 * 5 + 2')
+print(result)  # 출력: 17
+
+# 변수와 함께 eval() 사용하기
+x = 10
+y = 20
+result = eval('x + y')
+print(result)  # 출력: 30
+
+# 함수 호출을 포함하는 eval() 사용하기
+def multiply(a, b):
+    return a * b
+
+result = eval('multiply(2, 3)')
+print(result)  # 출력: 6
+
+=======================================
+
+개발된 프로그램을 안드로이드 앱으로 변환하는 방법에 대한 정보와 관련 유튜브 동영상을 찾으시는군요. 파이썬으로 안드로이드 앱을 만드는 데 사용할 수 있는 두 가지 주요 라이브러리가 있습니다:
+
+Kivy: 이는 멀티 터치 앱을 만들기 위한 오픈 소스 파이썬 라이브러리로, 안드로이드와 iOS에서 실행 가능합니다. Kivy 앱을 안드로이드 APK 파일로 변환하기 위해 Buildozer라는 도구를 사용할 수 있습니다1.
+BeeWare: 이 라이브러리를 사용하면 파이썬 코드를 네이티브 앱으로 변환하여 안드로이드, iOS, Windows, macOS 및 Linux에서 실행할 수 있습니다. BeeWare의 Briefcase 도구를 사용하여 안드로이드 앱을 패키징할 수 있습니다2.
+유튜브에서는 이러한 변환 과정을 단계별로 설명하는 동영상을 찾기 어려울 수 있지만, 위에서 언급한 라이브러리의 공식 문서나 블로그 포스트에서 자세한 가이드를 찾을 수 있습니다. 또한, 파이썬 코드로 유튜브 영상을 다운로드하는 방법에 대한 동영상이나 블로그 포스트도 있을 수 있으니, 이를 참고하여 필요한 기능을 구현할 수 있습니다
+
+https://codealone.tistory.com/36
+https://m.blog.naver.com/goglkms/222088521207
+
+
+====================================
+유튜브 동영상 다운로드 받는 파이썬 방법 사이트
+https://m.blog.naver.com/mungyo7/222976738229
+
+
+======================================================
+
+파이썬에서 SQLite 데이터베이스를 사용하려면 sqlite3 모듈을 사용할 수 있습니다. 그리고 텍스트를 음성으로 변환하려면 gTTS (Google Text-to-Speech) 라이브러리를 사용할 수 있습니다. 아래는 요청하신 기능을 수행하는 간단한 코드 예제입니다.
+
+Python
+
+import sqlite3
+from gtts import gTTS
+
+# SQLite 데이터베이스에 연결
+conn = sqlite3.connect('YBDB.db')
+c = conn.cursor()
+
+# BIBLE 테이블에서 데이터를 읽어옵니다.
+c.execute("SELECT 출처, 성경구절 FROM BIBLE")
+rows = c.fetchall()
+
+for row in rows:
+    출처, 성경구절 = row
+    # 파일명에 사용할 수 없는 특수문자를 제거합니다.
+    filename = 출처.replace('/', '_').replace(':', '_') + '.mp3'
+    
+    # 성경구절을 오디오 파일로 변환합니다.
+    tts = gTTS(text=성경구절, lang='ko')
+    tts.save(filename)
+
+# 데이터베이스 연결을 닫습니다.
+conn.close()
+
+
+===================================================================
+동영상에 텍스트를 추가하고, 그 텍스트를 읽는 오디오 파일을 만들어 동영상과 함께 재생하려면, 오디오와 비디오의 동기화가 중요합니다. 이를 위한 한 가지 방법은 타임코드를 사용하는 것입니다. 타임코드는 특정 시간에 텍스트가 나타나고 사라지는 시점을 정확하게 지정할 수 있게 해줍니다.
+
+예를 들어, 파이썬의 moviepy 라이브러리를 사용하여 동영상에 텍스트를 추가하고, gTTS 라이브러리를 사용하여 텍스트를 읽는 오디오 파일을 생성할 수 있습니다. 그런 다음, moviepy의 AudioFileClip 함수를 사용하여 오디오 클립을 생성하고, CompositeVideoClip 함수를 사용하여 오디오 클립과 비디오 클립을 합칠 수 있습니다.
+
+다음은 이를 수행하는 간단한 코드 스니펫입니다:
+
+Python
+
+from moviepy.editor import TextClip, CompositeVideoClip, AudioFileClip
+from gtts import gTTS
+
+# 텍스트와 그것이 나타나야 하는 시간을 지정합니다.
+text = "Hello, world!"
+start_time = 10  # 10초 후
+end_time = 20  # 20초 동안
+
+# 텍스트 클립을 생성합니다.
+text_clip = TextClip(text, fontsize=24, color='white')
+text_clip = text_clip.set_start(start_time).set_duration(end_time - start_time)
+
+# 오디오 파일을 생성합니다.
+tts = gTTS(text=text, lang='ko')
+tts.save('audio.mp3')
+
+# 오디오 클립을 생성합니다.
+audio_clip = AudioFileClip('audio.mp3')
+
+# 비디오 클립에 텍스트 클립과 오디오 클립을 추가합니다.
+video = CompositeVideoClip([video, text_clip.set_audio(audio_clip)])
+video.write_videofile("output.mp4")
+AI가 생성한 코드입니다. 신중하게 검토하고 사용하세요. FAQ의 자세한 정보.
+이 코드는 텍스트를 읽는 오디오 파일을 생성하고, 해당 오디오 파일이 재생되는 동안 동영상에 텍스트를 표시합니다. 텍스트와 오디오는 지정된 시간에 시작하므로 동기화됩니다.
+
+이 코드는 간단한 예제이며, 실제 사용을 위해서는 적절한 예외 처리 등이 추가되어야 할 수 있습니다. 또한, 이 코드는 moviepy와 gTTS 라이브러리가 설치되어 있어야 합니다. 필요한 라이브러리를 설치하려면 다음 명령을 사용하세요:
+
+pip install moviepy gTTS
+
+========================================
+a=[1,2,3]
+b=a  이거는 b는a의 주소를 가지고 있는것이고
+b=a[:] 이거는 b에 a의 값을 슬라이싱해서 넣은것, 즉 복사
+
+=====================================================
+
+result = [num * 3 for num in a if num % 2 == 0]
+숫자가 2로 나눈 후 짝수인 경우
+
+==========================
+네, 파이썬에서 텍스트 파일을 읽고 쓰고 추가하는 방법에 대한 간단한 예제를 드릴게요.
+
+Python
+
+# 파일 읽기
+with open('파일명.txt', 'r') as f:
+    lines = f.readlines()
+    for line in lines:
+        print(line)
+
+# 파일 쓰기
+with open('파일명.txt', 'w') as f:
+    f.write('새로운 내용\n')
+
+# 파일에 내용 추가하기
+with open('파일명.txt', 'a') as f:
+    f.write('추가할 내용\n')
+
+f = open('filename', 'r', 'encoding='utf8')
+lines = f.readlines()  <== 모두 읽기
+
+while line in lines :
+    print(line)
+
+
+\\ -> \\\\
+#메타문자 
+        ^ : 맨처음
+        $ : 맨끝
+        \b : 공백   \b단어\b
+
+#그룹핑 :    
+         (단어)  => ()로 묵으면 그룹핑
+ 
+ + : 문자열 뒤로 진행
+
+ print("My name is {}. old age {}".format("최영복", "58"))
